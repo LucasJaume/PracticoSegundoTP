@@ -1,12 +1,10 @@
 .formulario{
     margin: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.nombre{
-    padding: 20px;
-}
-
-.contraseña{
+.nombre, .apellido, .mail, .tipoUsuario, .dni, .fecha, .contrasena{
     padding: 20px;
 }
 

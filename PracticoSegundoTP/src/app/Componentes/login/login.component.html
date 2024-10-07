@@ -1,1 +1,18 @@
-<p>login works!</p>
+<form [formGroup]="form">
+<div class="formulario">
+    <div class="nombre">
+       <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="nombre">
+       </mat-form-field> 
+    </div>
+    <div class="contraseña">
+       <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="Contrasena">
+       </mat-form-field> 
+    </div>
+</div>
+<button (click)="aceptar()">Aceptar</button>
+<button (click)="close()">Cancelar</button>
+</form>

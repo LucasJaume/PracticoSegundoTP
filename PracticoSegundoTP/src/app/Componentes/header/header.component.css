@@ -1,0 +1,35 @@
+.header {
+    display: flex;              
+    justify-content: space-between;    
+    align-items: center;         
+    height: 100px;             
+    padding: 0 20px;
+    background-color: rgb(126, 126, 210);      
+}
+
+.titulo {
+    flex: 1;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+}
+
+.nombreUsuario {
+    margin-right: 10px;
+}
+
+.icono {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cerrar {
+    cursor: pointer;
+    color: red;
+}
+
+h1 {
+    margin: 0;    
+}
