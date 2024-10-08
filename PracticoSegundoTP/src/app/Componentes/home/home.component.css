@@ -1,0 +1,53 @@
+body {
+    background-image: url("../../../Img/mediana.jpg");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh;
+    margin: 0; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Color blanco para el texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la legibilidad */
+}
+
+.funciones{
+    position: absolute;
+    left: 100px;
+    border: 1px black solid;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0px 1px 20px 7px black;
+}
+
+h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+button[mat-button] {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para el botón */
+    color: white; /* Color blanco para el texto del botón */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[mat-button]:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro al pasar el cursor */
+}
+
+mat-menu {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente para el menú */
+    color: white; /* Color blanco para el texto del menú */
+}
+
+mat-menu button[mat-menu-item] {
+    color: white; /* Color blanco para los ítems del menú */
+}

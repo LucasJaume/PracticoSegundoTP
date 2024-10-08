@@ -15,6 +15,8 @@ import { InicioNoRegistradoComponent } from './Componentes/inicio-no-registrado/
 import { RegistrarseComponent } from './Componentes/registrarse/registrarse.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './Componentes/home/home.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { HomeComponent } from './Componentes/home/home.component';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
