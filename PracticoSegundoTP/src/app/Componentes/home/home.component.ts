@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +7,10 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  constructor(private router:Router){}
+
+  nuevoTurno():void{
+    this.router.navigate(['/Nuevo'])
+  }
 
 }

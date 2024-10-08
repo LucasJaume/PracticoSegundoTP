@@ -19,7 +19,6 @@ inicioSesion(): void {
 
   dialogRef.afterClosed().subscribe(result => {
     console.log('El diálogo se cerró');
-    // Puedes manejar el resultado aquí si es necesario
   });
 }
 
@@ -28,7 +27,6 @@ registrarse():void{
 
   dialogRef.afterClosed().subscribe(result => {
     console.log('El diálogo se cerró');
-    // Puedes manejar el resultado aquí si es necesario
   });
 }
 }

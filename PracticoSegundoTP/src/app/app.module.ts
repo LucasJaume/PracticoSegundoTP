@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './Componentes/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     HeaderComponent,
     InicioNoRegistradoComponent,
     RegistrarseComponent,
-    HomeComponent
+    HomeComponent,
+    NuevoTurnoComponent
   ],
   imports: [
     BrowserModule,

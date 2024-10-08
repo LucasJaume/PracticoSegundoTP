@@ -1,0 +1,54 @@
+<div class="formulario">
+    <form [formGroup]="form">
+        <div class="cobertura">
+            <mat-form-field>
+             <mat-label>Cobertura</mat-label>
+             <mat-select>
+                <mat-option *ngFor="let cobertura of cobertura" [value]="cobertura.obraSocial">
+                  {{cobertura.obraSocial}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+         </div>
+         <div class="especialidad">
+            <mat-form-field>
+             <mat-label>Especialidad</mat-label>
+             <mat-select>
+                <mat-option *ngFor="let especialidades of especialidad" [value]="especialidades.rol">
+                  {{especialidades.rol}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+         </div>
+         <div class="profesional">
+            <mat-form-field>
+             <mat-label>Pofesional</mat-label>
+             <mat-select>
+                <mat-option *ngFor="let profesionales of profesional" [value]="profesionales.nombre">
+                  {{profesionales.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+         </div>
+         <div class="fecha">
+            <mat-form-field>
+             <mat-label>Fecha</mat-label>
+             <input matInput type="date" formControlName="fecha">
+            </mat-form-field> 
+         </div>
+         <div class="hora">
+            <mat-form-field>
+             <mat-label>Hora</mat-label>
+             <input matInput type="datetime" formControlName="hora">
+            </mat-form-field> 
+         </div>
+         <div class="notas">
+            <mat-form-field>
+             <mat-label>Notas</mat-label>
+             <input matInput type="text" formControlName="notas">
+            </mat-form-field> 
+         </div>
+         <button>aceptar</button>
+         <button (click)="botonCancelar()">Cancelar</button>
+        </form>
+    </div>
