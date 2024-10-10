@@ -1,0 +1,42 @@
+<form [formGroup]="form">
+    <div class="formulario">
+        <div class="nombre">
+           <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre">
+           </mat-form-field> 
+        </div>
+        <div class="apellido">
+           <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput type="password" formControlName="apellido">
+           </mat-form-field> 
+        </div>
+        <div class="dni">
+           <mat-form-field>
+            <mat-label>Documento</mat-label>
+            <input matInput type="password" formControlName="dni">
+           </mat-form-field> 
+        </div>
+        <div class="correo">
+           <mat-form-field>
+            <mat-label>Correo Electronico</mat-label>
+            <input matInput type="password" formControlName="correo">
+           </mat-form-field> 
+        </div>
+        <div class="telefono">
+           <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input matInput type="password" formControlName="telefono">
+           </mat-form-field> 
+        </div>
+        <div class="contrasena">
+           <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="contrasena">
+           </mat-form-field> 
+        </div>
+    </div>
+    <button>Editar</button>
+    <button (click)="cancelar()">Volver al menu</button>
+    </form>

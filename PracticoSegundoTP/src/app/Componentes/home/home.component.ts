@@ -13,4 +13,11 @@ export class HomeComponent {
     this.router.navigate(['/Nuevo'])
   }
 
+  misTurnos():void{
+    this.router.navigate(["/misTurnos"])
+  }
+
+  datosPersonales():void{
+    this.router.navigate(["/datosPersonales"])
+  }
 }

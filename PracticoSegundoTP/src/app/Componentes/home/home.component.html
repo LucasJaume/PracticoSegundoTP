@@ -5,9 +5,9 @@
 
         <button mat-button [matMenuTriggerFor]="menu">Menu</button>
         <mat-menu #menu="matMenu">
-        <button mat-menu-item>Mis turnos</button>
+        <button mat-menu-item (click)="misTurnos()">Mis turnos</button>
         <button mat-menu-item (click)="nuevoTurno()">Nuevos Turno</button>
-        <button mat-menu-item>Mis datos personales</button>
+        <button mat-menu-item (click)="datosPersonales()">Mis datos personales</button>
         </mat-menu>
     </div>
 </body>

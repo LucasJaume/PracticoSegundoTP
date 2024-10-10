@@ -18,7 +18,9 @@ import { HomeComponent } from './Componentes/home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.component';
-
+import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component';
+import { MatTableModule } from '@angular/material/table';
+import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-personales.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.compo
     InicioNoRegistradoComponent,
     RegistrarseComponent,
     HomeComponent,
-    NuevoTurnoComponent
+    NuevoTurnoComponent,
+    MisTurnosComponent,
+    DatosPersonalesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.compo
     ReactiveFormsModule,
     MatDialogModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
