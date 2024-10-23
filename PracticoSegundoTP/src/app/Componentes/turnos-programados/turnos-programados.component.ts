@@ -23,8 +23,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class TurnosProgramadosComponent {
   dataSource = TURNOSMEDICOS;
   columnsToDisplay = ['hora', 'nombre', 'edad'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'acciones'];
   expandedElement: turnosMedicos | null = null;
+
+  cancelarTurno(turno: turnosMedicos) {
+
+  }
 }
 
 export interface turnosMedicos {

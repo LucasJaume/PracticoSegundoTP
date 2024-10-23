@@ -5,6 +5,8 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
+  <h1>GESTION DE TURNOS</h1>
+
 
 
 <table mat-table [dataSource]="dataSource">
@@ -38,11 +40,13 @@
         <button mat-menu-item (click)="modificarHorarios(element)">
             <mat-icon>schedule</mat-icon> Modificar horarios de atención
           </button>
-        <button mat-menu-item (click)="agregarCancelarTurnos(element)">
-          <mat-icon>event</mat-icon> Agregar/Cancelar turnos
+        <button mat-menu-item (click)="agregarTurnos(element)">
+          <mat-icon>event</mat-icon> Agregar turnos
+        </button>
+        <button mat-menu-item (click)="cancelarTurnos(element)">
+          <mat-icon>event</mat-icon> Cancelar turnos
         </button>
       </mat-menu>
-
 
       <button mat-icon-button (click)="verTurnosConfirmados(element)">
         <mat-icon>visibility</mat-icon>

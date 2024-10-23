@@ -21,8 +21,4 @@ export class VistaOperadorComponent {
   vistaGestionMedico(): void{
     this.router.navigate(["/vistaGestionMedico"])
   }
-
-  vistaPacientesDia(): void{
-    this.router.navigate(["/vistaPacientesDia"])
-  }
 }

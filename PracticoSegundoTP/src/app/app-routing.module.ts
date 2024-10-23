@@ -13,7 +13,6 @@ import { VistaOperadorComponent } from './Componentes/vista-operador/vista-opera
 import { OperadorCrearPacienteComponent } from './Componentes/operador-crear-paciente/operador-crear-paciente.component';
 import { OperadorAsignarTurnosComponent } from './Componentes/operador-asignar-turnos/operador-asignar-turnos.component';
 import { OperadorGestionMedicoComponent } from './Componentes/operador-gestion-medico/operador-gestion-medico.component';
-import { OperadorPacientesDelDiaComponent } from './Componentes/operador-pacientes-del-dia/operador-pacientes-del-dia.component';
 
 const routes: Routes = [
   {path:'home-login', component:InicioNoRegistradoComponent},
@@ -30,7 +29,6 @@ const routes: Routes = [
   {path: 'vistaCrearPaciente', component:OperadorCrearPacienteComponent},
   {path: 'vistaAsignarTurno', component:OperadorAsignarTurnosComponent},
   {path: 'vistaGestionMedico', component:OperadorGestionMedicoComponent},
-  {path: 'vistaPacientesDia', component:OperadorPacientesDelDiaComponent}
 ];
 
 @NgModule({

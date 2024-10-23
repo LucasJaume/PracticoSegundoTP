@@ -3,6 +3,7 @@ import {MatTableModule} from '@angular/material/table';
 import { GestionAgendasComponent } from '../gestion-agendas/gestion-agendas.component';
 import { MatDialog } from '@angular/material/dialog';
 import { OperadorAsignarTurnosComponent } from '../operador-asignar-turnos/operador-asignar-turnos.component';
+import { TurnosProgramadosComponent } from '../turnos-programados/turnos-programados.component';
 
 
 export interface operadorGestionMedico {
@@ -30,20 +31,20 @@ export class OperadorGestionMedicoComponent {
 
   modificarHorarios(doctor: any) {
     const dialogRef = this.dialog.open(GestionAgendasComponent, {
-      width: '400px',
-      height: '300px',
-      data: { horarios: { entrada: '09:00', salida: '17:00' } } // Puedes pasar los horarios actuales del doctor aquí
+      width: 'auto',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+      data: { horarios: { entrada: '09:00', salida: '17:00' } } 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Nuevo horario guardado:', result);
-        // Aquí puedes actualizar la lógica para guardar el nuevo horario en tu sistema
       }
     });
   }
 
-  agregarCancelarTurnos(doctor: any) {
+  agregarTurnos(doctor: any) {
     const dialogRef = this.dialog.open(OperadorAsignarTurnosComponent, {
       width: '800px',
       height: '700px',
@@ -52,13 +53,19 @@ export class OperadorGestionMedicoComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Nuevo horario guardado:', result);
-        // Aquí puedes actualizar la lógica para guardar el nuevo horario en tu sistema
       }
     });
   }
 
   verTurnosConfirmados(doctor: any) {
-    
+    const dialogRef = this.dialog.open(TurnosProgramadosComponent, {
+      width: '800px',
+      height: '700px',
+    });
+  }
+
+  cancelarTurnos(doctor : any){
+    const dialogRef = this.dialog.open(TurnosProgramadosComponent);
   }
 }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private location: Location) {}
 
   cerrarSesion(): void {
     this.router.navigate(['/home-login']);
+  }
+
+  volverAtras() : void{
+    this.location.back();
   }
 }

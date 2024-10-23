@@ -58,3 +58,23 @@ h1 {
 .titulo-link:hover h1 {
     color: #ccc;
 }
+
+.btn-volver {
+    display: flex; 
+    align-items: center; 
+    background-color: #f0f0f0;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.btn-volver:hover {
+    background-color: #e0e0e0; 
+}
+
+.btn-volver mat-icon {
+
+    font-size: 20px; 
+    color: #000;
+}

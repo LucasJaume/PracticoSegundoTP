@@ -35,7 +35,6 @@ import { VistaOperadorComponent } from './Componentes/vista-operador/vista-opera
 import { OperadorCrearPacienteComponent } from './Componentes/operador-crear-paciente/operador-crear-paciente.component';
 import { OperadorAsignarTurnosComponent } from './Componentes/operador-asignar-turnos/operador-asignar-turnos.component';
 import { OperadorGestionMedicoComponent } from './Componentes/operador-gestion-medico/operador-gestion-medico.component';
-import { OperadorPacientesDelDiaComponent } from './Componentes/operador-pacientes-del-dia/operador-pacientes-del-dia.component'; 
 
 registerLocaleData(localeES);
 
@@ -58,8 +57,7 @@ registerLocaleData(localeES);
     VistaOperadorComponent,
     OperadorCrearPacienteComponent,
     OperadorAsignarTurnosComponent,
-    OperadorGestionMedicoComponent,
-    OperadorPacientesDelDiaComponent
+    OperadorGestionMedicoComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +75,7 @@ registerLocaleData(localeES);
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
