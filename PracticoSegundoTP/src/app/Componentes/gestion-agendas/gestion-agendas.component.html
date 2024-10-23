@@ -1,0 +1,35 @@
+<h1>bienvenido al control de tu agenda</h1>
+<p>aqui podras comunicar a tus pacientes tus horarios de trabajo</p>
+
+<mat-form-field>
+    <mat-label>Selecciona una fecha</mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event.value)">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+<br>
+
+<div *ngIf="selectedDate">
+    <p>Horarios para el {{selectedDate | date: 'dd/MM/yyyy'}}</p>
+    <p *ngIf="horarios[selectedDate]">
+        Entrada:{{horarios[selectedDate].entrada}} | Salida:{{horarios[selectedDate].salida}}
+    </p>
+    <p *ngIf="!horarios[selectedDate]">No hay horarios establecidos para este dia.</p>
+
+</div>
+
+<button mat-raised-button (click)="mostrarHorarios = !mostrarHorarios">Establecer nuevo horario</button>
+
+<div *ngIf="mostrarHorarios">
+    <label for="horarioentrada">Horario de entrada: </label>
+    <input id="horarioentrada" type="time" name="horarioentrada" placeholder="Establezca su horario de entrada" [(ngModel)]="nuevoHorario.entrada">
+    <br>
+    
+    <label for="horariosalida">Horario de salida: </label>
+    <input id="horariosalida" type="time" name="horariosalida" placeholder="Establezca su horario de salida" [(ngModel)]="nuevoHorario.salida">
+    <br>
+    
+    <button mat-raised-button type="submit" (click)="establecerHorario()">Establecer</button>
+
+    <!-- <button mat-button (click)="cerrar()">Cerrar</button> -->
+</div>

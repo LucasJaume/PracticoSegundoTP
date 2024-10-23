@@ -6,12 +6,9 @@ button {
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 20px;
     border-radius: 10px;
+    margin-left:270px;
 }
 
 button:hover {

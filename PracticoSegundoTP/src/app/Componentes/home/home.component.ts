@@ -20,4 +20,16 @@ export class HomeComponent {
   datosPersonales():void{
     this.router.navigate(["/datosPersonales"])
   }
+
+  listaUsuarios(): void{
+    this.router.navigate(["/vistaAdministrador"])
+  }
+
+  vistaMedico() : void{
+    this.router.navigate(["/vistaMedico"])
+  }
+
+  vistaOperador() : void{
+    this.router.navigate(["/vistaOperador"])
+  }
 }

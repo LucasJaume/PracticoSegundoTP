@@ -21,6 +21,23 @@ import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.compo
 import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component';
 import { MatTableModule } from '@angular/material/table';
 import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-personales.component';
+import { VistaAdministradorComponent } from './Componentes/vista-administrador/vista-administrador.component';
+import { VistaMedicoComponent } from './Componentes/vista-medico/vista-medico.component';
+import { TurnosProgramadosComponent } from './Componentes/turnos-programados/turnos-programados.component';
+import { GestionAgendasComponent } from './Componentes/gestion-agendas/gestion-agendas.component';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+import { VistaOperadorComponent } from './Componentes/vista-operador/vista-operador.component';
+import { OperadorCrearPacienteComponent } from './Componentes/operador-crear-paciente/operador-crear-paciente.component';
+import { OperadorAsignarTurnosComponent } from './Componentes/operador-asignar-turnos/operador-asignar-turnos.component';
+import { OperadorGestionMedicoComponent } from './Componentes/operador-gestion-medico/operador-gestion-medico.component';
+import { OperadorPacientesDelDiaComponent } from './Componentes/operador-pacientes-del-dia/operador-pacientes-del-dia.component'; 
+
+registerLocaleData(localeES);
 
 @NgModule({
   declarations: [
@@ -33,7 +50,16 @@ import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-p
     HomeComponent,
     NuevoTurnoComponent,
     MisTurnosComponent,
-    DatosPersonalesComponent
+    DatosPersonalesComponent,
+    VistaAdministradorComponent,
+    VistaMedicoComponent,
+    TurnosProgramadosComponent,
+    GestionAgendasComponent,
+    VistaOperadorComponent,
+    OperadorCrearPacienteComponent,
+    OperadorAsignarTurnosComponent,
+    OperadorGestionMedicoComponent,
+    OperadorPacientesDelDiaComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +72,11 @@ import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-p
     MatDialogModule,
     MatMenuModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

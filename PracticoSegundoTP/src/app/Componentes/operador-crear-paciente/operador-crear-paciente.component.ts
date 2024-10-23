@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-registrarse',
-  templateUrl: './registrarse.component.html',
-  styleUrls: ['./registrarse.component.css']
+  selector: 'app-operador-crear-paciente',
+  templateUrl: './operador-crear-paciente.component.html',
+  styleUrls: ['./operador-crear-paciente.component.css']
 })
-export class RegistrarseComponent {
-  form=this.fb.group({
+export class OperadorCrearPacienteComponent {
+  formularioCrearPaciente=this.fb.group({
     'nombre':['',Validators.required],
     'apellido':['',Validators.required],
     'mail':['',Validators.required],
@@ -18,13 +18,7 @@ export class RegistrarseComponent {
     'contrasena':['',Validators.required]
   })
 
-constructor(
-  private fb:FormBuilder, 
-  private dialogRef:MatDialogRef<RegistrarseComponent>){}
+  constructor(private fb:FormBuilder){}
 
-close(): void {
-  this.dialogRef.close();
-}
 
 }
-

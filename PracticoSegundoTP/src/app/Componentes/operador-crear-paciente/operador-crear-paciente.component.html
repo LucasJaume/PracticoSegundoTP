@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="formularioCrearPaciente">
     <div class="formulario">
         <div class="nombre">
            <mat-form-field>
@@ -39,10 +39,9 @@
         <div class="contrasena">
            <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password" formControlName="contrasena">
+            <input matInput type="password" formControlName="Contrasena">
            </mat-form-field> 
         </div>
+        <button>CREAR PACIENTE</button>
     </div>
-    <button>Aceptar</button>
-    <button (click)="close()">Cancelar</button>
-    </form>
+</form>

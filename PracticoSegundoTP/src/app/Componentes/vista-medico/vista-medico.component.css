@@ -5,6 +5,7 @@ body {
     background-repeat: no-repeat; 
     height: 100vh;
     margin: 0; 
+    padding: 0;
     overflow: hidden; 
     display: flex;
     flex-direction: column;
@@ -42,14 +43,14 @@ button[mat-button] {
 }
 
 button[mat-button]:hover {
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro al pasar el cursor */
 }
 
 mat-menu {
-    background-color: rgba(0, 0, 0, 0.8); 
-    color: white; 
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente para el menú */
+    color: white; /* Color blanco para el texto del menú */
 }
 
 mat-menu button[mat-menu-item] {
-    color: white;
+    color: white; /* Color blanco para los ítems del menú */
 }
