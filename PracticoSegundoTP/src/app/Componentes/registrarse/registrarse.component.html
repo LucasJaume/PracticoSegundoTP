@@ -6,6 +6,12 @@
             <input matInput type="text" formControlName="nombre">
            </mat-form-field> 
         </div>
+        <div class="usuario">
+           <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <input matInput type="text" formControlName="usuario">
+           </mat-form-field> 
+        </div>
         <div class="apellido">
            <mat-form-field>
             <mat-label>Apellido</mat-label>
@@ -15,13 +21,7 @@
         <div class="mail">
            <mat-form-field>
             <mat-label>Mail</mat-label>
-            <input matInput type="text" formControlName="mail">
-           </mat-form-field> 
-        </div>
-        <div class="tipoUsuario">
-           <mat-form-field>
-            <mat-label>Tipo de usuario</mat-label>
-            <input matInput type="text" formControlName="tipo">
+            <input matInput type="text" formControlName="email">
            </mat-form-field> 
         </div>
         <div class="dni">
@@ -30,6 +30,12 @@
             <input matInput type="number" formControlName="dni">
            </mat-form-field> 
         </div>
+        <div class="telefono">
+         <mat-form-field>
+          <mat-label>telefono</mat-label>
+          <input matInput type="text" formControlName="telefono">
+         </mat-form-field> 
+      </div>
         <div class="fecha">
            <mat-form-field>
             <mat-label>fecha de nacimiento</mat-label>
@@ -39,10 +45,10 @@
         <div class="contrasena">
            <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password" formControlName="Contrasena">
+            <input matInput type="password" formControlName="contrasena">
            </mat-form-field> 
         </div>
     </div>
-    <button>Aceptar</button>
+    <button (click)="aceptar()">Aceptar</button>
     <button (click)="close()">Cancelar</button>
     </form>

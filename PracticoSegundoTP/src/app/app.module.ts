@@ -21,6 +21,7 @@ import { NuevoTurnoComponent } from './Componentes/nuevo-turno/nuevo-turno.compo
 import { MisTurnosComponent } from './Componentes/mis-turnos/mis-turnos.component';
 import { MatTableModule } from '@angular/material/table';
 import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-personales.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DatosPersonalesComponent } from './Componentes/datos-personales/datos-p
     MatDialogModule,
     MatMenuModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
