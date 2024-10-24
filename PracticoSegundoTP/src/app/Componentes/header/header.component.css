@@ -1,17 +1,22 @@
 .header {
-    display: flex;              
-    justify-content: space-between;    
-    align-items: center;         
-    height: 100px;        
-    width: 100vw;     
-    padding: 0 20px;
-    background-color: rgb(126, 126, 210);   
-    color: white;    
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding: 0 40px;
+    background-color: #7e7ed2;
+    color: white;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
 }
 
 .titulo {
     flex: 1;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .usuario-info {
@@ -20,19 +25,56 @@
 }
 
 .nombreUsuario {
-    margin-right: 10px;
+    margin-right: 15px;
+    font-size: 16px;
 }
 
 .icono {
     margin-right: 10px;
+    font-size: 18px;
     cursor: pointer;
+    color: #fff;
 }
 
 .cerrar {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
-    color: red;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-h1 {
-    margin: 0;    
+.cerrar:hover {
+    background-color: darkred;
+}
+
+.titulo-link {
+    text-decoration: none;
+    color: white;
+}
+
+.titulo-link:hover h1 {
+    color: #ccc;
+}
+
+.btn-volver {
+    display: flex; 
+    align-items: center; 
+    background-color: #f0f0f0;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.btn-volver:hover {
+    background-color: #e0e0e0; 
+}
+
+.btn-volver mat-icon {
+
+    font-size: 20px; 
+    color: #000;
 }

@@ -1,0 +1,36 @@
+
+.contenedor-tabla{
+    width: 500px;
+    height: 430px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+
+}
+
+.flex-tabla{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acciones-superiores{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 20px;    
+}   
+
+.titulo-tabla{
+    margin-top: 12px;
+}
+
+button, button[mat-button] {
+    margin: 10px 0;           
+    padding: 10px 20px;                  
+    border: none;              
+    border-radius: 5px;        
+    background-color: rgb(126, 126, 210); 
+    color: white;              
+    cursor: pointer;           
+    transition: background-color 0.3s; 
+}

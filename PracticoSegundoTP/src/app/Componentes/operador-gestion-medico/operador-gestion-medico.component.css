@@ -1,0 +1,24 @@
+
+:host {
+    display: block;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    
+  }
+  
+  h1 {
+    font-size: 24px; /* Tamaño de fuente del encabezado */
+    color: #333; /* Color del texto */
+    margin-bottom: 15px; /* Espacio debajo del encabezado */
+    text-align: center; /* Centrar texto */
+  }
+  
+  mat-form-field {
+    width: 100%; /* Asegurarse de que el campo de formulario ocupa todo el ancho */
+    margin-bottom: 20px; /* Espacio entre campos */
+  }
+
+
+

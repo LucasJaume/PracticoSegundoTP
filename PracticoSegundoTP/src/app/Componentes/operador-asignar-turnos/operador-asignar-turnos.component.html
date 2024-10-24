@@ -1,0 +1,62 @@
+<div class="formulario">
+    <form [formGroup]="form">
+        <div class="paciente">
+            <mat-form-field>
+                <mat-label>Asignar turno al paciente</mat-label>
+                <input matInput type="number" formControlName="notas" placeholder="COLOCAR ID DEL PACIENTE">
+            </mat-form-field>
+        </div>
+        <div class="cobertura">
+            <mat-form-field>
+                <mat-label>Cobertura</mat-label>
+                <mat-select formControlName="cobertura">
+                    <mat-option *ngFor="let cobertura of cobertura" [value]="cobertura.obraSocial">
+                        {{cobertura.obraSocial}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+            <div class="especialidad">
+            <mat-form-field>
+                <mat-label>Especialidad</mat-label>
+                <mat-select formControlName="especialidad">
+                    <mat-option *ngFor="let especialidades of especialidad" [value]="especialidades.rol">
+                        {{especialidades.rol}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="profesional">
+            <mat-form-field>
+                <mat-label>Profesional</mat-label>
+                <mat-select formControlName="profesional">
+                    <mat-option *ngFor="let profesionales of profesional" [value]="profesionales.nombre">
+                        {{profesionales.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="fecha">
+            <mat-form-field>
+                <mat-label>Fecha</mat-label>
+                <input matInput type="date" formControlName="fecha">
+            </mat-form-field>
+        </div>
+        <div class="hora">
+            <mat-form-field>
+                <mat-label>Hora</mat-label>
+                <input matInput type="time" formControlName="hora">
+            </mat-form-field>
+        </div>
+        <div class="notas">
+            <mat-form-field>
+                <mat-label>Notas</mat-label>
+                <input matInput type="text" formControlName="notas">
+            </mat-form-field>
+        </div>
+        <div class="botones">
+            <button type="submit">ASIGNAR TURNO</button>
+        </div>
+    </form>
+ </div>
+ 

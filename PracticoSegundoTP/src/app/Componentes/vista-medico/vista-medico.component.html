@@ -1,0 +1,12 @@
+<body>
+    
+    <div class="funciones">
+        <h3>Bienvenido (nombre del medico)</h3>
+
+        <button mat-button [matMenuTriggerFor]="menu">!</button>
+        <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="turnosProgramados()">Turnos programados</button>
+        <button mat-menu-item (click)="gestionAgenda()">Gestion de agenda</button>
+        </mat-menu>
+    </div>
+</body>

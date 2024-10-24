@@ -1,10 +1,14 @@
 <div class="header">
     <div class="titulo">
-        <h1>Bienvenida a MiClinica!</h1>
+        <a routerLink="/home" class="titulo-link">
+            <h1>Bienvenido a MiClinica!</h1>
+        </a>
+        <button (click)="volverAtras()" class="btn-volver"><mat-icon>arrow_back</mat-icon></button>
     </div>
     <div class="usuario-info">
         <span class="nombreUsuario">Nombre del Usuario</span>
         <span class="icono" title="Tipo de Usuario">ℹ️</span>
-        <span class="cerrar" (click)="cerrarSesion()">Cerrar sesión</span>
+        <button class="cerrar" (click)="cerrarSesion()">Cerrar sesión</button>
     </div>
 </div>
+

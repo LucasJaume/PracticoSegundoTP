@@ -2,3 +2,23 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+}
+
+/* Estilos para el MatDialog */
+::ng-deep .mat-dialog-container {
+    width: 90%; /* Ajusta el ancho según tus necesidades */
+    max-width: 500px; /* Máximo ancho del diálogo */
+    padding: 20px; /* Espaciado interno */
+    background-color: #ffffff; /* Color de fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más profunda */
+}
+
+

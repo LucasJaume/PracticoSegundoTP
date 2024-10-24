@@ -1,7 +1,10 @@
 .formulario{
-    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
     padding-left: 30px;
     padding-right: 30px;
+    max-width: 600px; 
 }
 
 .nombre, .apellido, .mail, .tipoUsuario, .dni, .fecha, .contrasena{
