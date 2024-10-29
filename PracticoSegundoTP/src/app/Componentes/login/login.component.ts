@@ -32,6 +32,8 @@ aceptar(): void {
         if (response.codigo === 200) {
           console.log('Login exitoso', response);
           localStorage.setItem('token', response.jwt);
+          sessionStorage.setItem('datosUsuario', JSON.stringify(response.payload));
+          localStorage.setItem('rol', response.payload[0].rol);
           this.router.navigate(['/home']);
           this.dialogRef.close();
         } else {

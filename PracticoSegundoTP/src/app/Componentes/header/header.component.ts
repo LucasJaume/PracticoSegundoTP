@@ -14,6 +14,8 @@ export class HeaderComponent {
     private location: Location) {}
 
   cerrarSesion(): void {
+    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/home-login']);
   }
 

@@ -5,12 +5,12 @@
 
         <button mat-button [matMenuTriggerFor]="menu">Menu</button>
         <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="misTurnos()">Mis turnos</button>
-        <button mat-menu-item (click)="nuevoTurno()">Nuevos Turno</button>
-        <button mat-menu-item (click)="datosPersonales()">Mis datos personales</button>
-        <button mat-menu-item (click)="listaUsuarios()">Lista de usuarios (admin)</button>
-        <button mat-menu-item (click)="vistaMedico()">Medico</button>
-        <button mat-menu-item (click)="vistaOperador()">Operador</button>
+        <button mat-menu-item *ngIf="userRole === 'paciente'" (click)="misTurnos()">Mis turnos</button>
+        <button mat-menu-item  *ngIf="userRole === 'paciente'" (click)="nuevoTurno()">Nuevos Turno</button>
+        <button mat-menu-item  *ngIf="userRole === 'paciente'" (click)="datosPersonales()">Mis datos personales</button>
+        <button mat-menu-item  *ngIf="userRole === 'administrador'" (click)="listaUsuarios()">Lista de usuarios</button>
+        <button mat-menu-item  *ngIf="userRole === 'medico'" (click)="vistaMedico()">Medico</button>
+        <button mat-menu-item  *ngIf="userRole === 'operador'" (click)="vistaOperador()">Operador</button>
         </mat-menu>
     </div>
 </body>

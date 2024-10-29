@@ -5,13 +5,7 @@
             <mat-label>Nombre</mat-label>
             <input matInput type="text" formControlName="nombre">
            </mat-form-field> 
-        </div>
-        <div class="usuario">
-           <mat-form-field>
-            <mat-label>Usuario</mat-label>
-            <input matInput type="text" formControlName="usuario">
-           </mat-form-field> 
-        </div>
+        </div>   
         <div class="apellido">
            <mat-form-field>
             <mat-label>Apellido</mat-label>
@@ -39,15 +33,25 @@
         <div class="fecha">
            <mat-form-field>
             <mat-label>fecha de nacimiento</mat-label>
-            <input matInput type="text" formControlName="fecha">
+            <input matInput type="date" formControlName="fecha_nacimiento">
            </mat-form-field> 
         </div>
         <div class="contrasena">
            <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password" formControlName="contrasena">
+            <input matInput type="password" formControlName="password">
            </mat-form-field> 
         </div>
+        <div *ngIf="userRole === 'administrador'" class="rol">
+         <mat-form-field>
+           <mat-label>Rol</mat-label>
+           <mat-select formControlName="rol">
+             <mat-option value="medico">Médico</mat-option>
+             <mat-option value="administrador">Administrador</mat-option>
+             <mat-option value="operador">Operador</mat-option>
+           </mat-select>
+         </mat-form-field>
+       </div>
     </div>
     <button (click)="aceptar()">Aceptar</button>
     <button (click)="close()">Cancelar</button>

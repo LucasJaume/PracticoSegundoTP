@@ -15,9 +15,34 @@ export class AutenticacionService {
     return this.http.post(`${this.url}/api/login`, { usuario, password })
   }
 
-  register(apellido: string | null | undefined, nombre: string | null | undefined, fecha_nacimiento: string | null | undefined, password: string | null | undefined, usuario: string | null | undefined, rol: string | null | undefined, email: string | null | undefined, telefono: string | null | undefined, dni: string | null | undefined,):Observable<any>{
-    return this.http.post(`${this.url}/api/crearUsuario`, { usuario, password, fecha_nacimiento, nombre, apellido, rol, email, telefono, dni })
+  register(apellido: string | null | undefined, nombre: string | null | undefined, fecha_nacimiento: string | null | undefined, password: string | null | undefined, rol: string | null | undefined, email: string | null | undefined, telefono: string | null | undefined, dni: string | null | undefined,):Observable<any>{
+    return this.http.post(`${this.url}/api/crearUsuario`, { password, fecha_nacimiento, nombre, apellido, rol, email, telefono, dni })
   }
+
+  obtenerUsuarios(): Observable<any> {
+    const token = localStorage.getItem('token'); 
+  
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type' : 'application/json' 
+    };
+  
+    return this.http.get(`${this.url}/api/obtenerUsuarios`, { headers });
+  }
+
+  actualizarUsuario(id: string, usuarioData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+  
+    const headers = {
+        'Authorization': ` ${token}`,
+        'Content-type': 'application/json'
+    };
+  
+    return this.http.put(`${this.url}/api/actualizarUsuario/${id}`, usuarioData, { headers });
+  }
+
+
+  
 
 
 }

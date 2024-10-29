@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,8 +6,16 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  userRole: string | null = '';
+
   constructor(private router:Router){}
+
+  ngOnInit(): void {
+    const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || '[]');
+    this.userRole= datosUsuario[0]?.rol || '';
+  }
 
   nuevoTurno():void{
     this.router.navigate(['/Nuevo'])
@@ -32,4 +40,6 @@ export class HomeComponent {
   vistaOperador() : void{
     this.router.navigate(["/vistaOperador"])
   }
+
+
 }
