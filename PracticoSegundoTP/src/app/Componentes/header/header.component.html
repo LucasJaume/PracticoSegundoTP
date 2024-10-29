@@ -6,8 +6,8 @@
         <button (click)="volverAtras()" class="btn-volver"><mat-icon>arrow_back</mat-icon></button>
     </div>
     <div class="usuario-info">
-        <span class="nombreUsuario">Nombre del Usuario</span>
-        <span class="icono" title="Tipo de Usuario">ℹ️</span>
+        <span class="nombreUsuario">{{nombreUsuario}}</span>
+        <span class="icono" title="{{tipoUsuario}}">ℹ️</span>
         <button class="cerrar" (click)="cerrarSesion()">Cerrar sesión</button>
     </div>
 </div>
