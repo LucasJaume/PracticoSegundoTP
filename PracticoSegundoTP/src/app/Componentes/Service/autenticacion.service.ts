@@ -41,6 +41,26 @@ export class AutenticacionService {
     return this.http.put(`${this.url}/api/actualizarUsuario/${id}`, usuarioData, { headers });
   }
 
+  obtenerEspecialidades(): Observable<any>{
+    const token = localStorage.getItem('token'); 
+  
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type' : 'application/json' 
+    };
+  
+    return this.http.get(`${this.url}/api/obtenerEspecialidades`, { headers });
+  }
+
+  crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }): Observable<any> {
+    const token = localStorage.getItem('token'); 
+    const headers = {
+      'Authorization': `Bearer  ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.post(`${this.url}/api/crearMedicoEspecialidad`, data, { headers });
+  }
+
 
   
 

@@ -52,6 +52,16 @@
            </mat-select>
          </mat-form-field>
        </div>
+       <div *ngIf="userRole === 'administrador'" class="rol">
+         <div *ngIf="form.get('rol')?.value === 'medico'">
+         <mat-form-field>
+           <mat-label>Especialidad</mat-label>
+           <mat-select formControlName="especialidadId">
+             <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad.id"> {{especialidad.descripcion}}</mat-option>
+           </mat-select>
+         </mat-form-field>
+      </div>
+       </div>
     </div>
     <button (click)="aceptar()">Aceptar</button>
     <button (click)="close()">Cancelar</button>

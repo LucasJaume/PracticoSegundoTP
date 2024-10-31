@@ -14,6 +14,8 @@ export class RegistrarseComponent {
 
   userRole: string | null  = localStorage.getItem("rol");
 
+  especialidades: any[] = [];
+
   form = this.fb.group({
     'nombre': ['', Validators.required],
     'apellido': ['', Validators.required],
@@ -22,7 +24,8 @@ export class RegistrarseComponent {
     'dni': ['', Validators.required],
     'fecha_nacimiento': ['', Validators.required],
     'password': ['', Validators.required],
-    'rol': ['', Validators.required]
+    'rol': ['', Validators.required],
+    'especialidadId': ['']
  });
 
   ngOnInit(): void {
@@ -30,6 +33,7 @@ export class RegistrarseComponent {
     const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || '[]');
 
     this.userRole= datosUsuario[0]?.rol || '';
+    
     console.log(this.usuario)
     if (this.usuario) {
       const fechaNacimientoDate: Date = new Date(this.usuario.fecha_nacimiento);
@@ -46,7 +50,18 @@ export class RegistrarseComponent {
         rol: this.usuario.tipoUsuario
       });
     }
-    console.log('Datos iniciales del formulario:', this.form.value);
+
+    if (this.form.get('rol')?.value === 'medico') {
+      this.cargarEspecialidades();
+    }
+
+    this.form.get('rol')?.valueChanges.subscribe((rol) => {
+      if (rol === 'medico') {
+        this.cargarEspecialidades();
+      } else {
+        this.form.get('especialidadId')?.reset();
+      }
+    });
   }
 usuario: any;
 
@@ -71,7 +86,7 @@ close(): void {
 aceptar(): void {
   console.log(this.form);
 
-  const { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol } = this.form.value;
+  const { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol, especialidadId  } = this.form.value;
 
   let body = { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol };
 
@@ -108,11 +123,20 @@ aceptar(): void {
         if (response.codigo === 200) {
           console.log('Usuario registrado exitosamente', response);
           localStorage.setItem('token', response.jwt);
+
+          // no funciona 
+          // if (rol === 'medico' && especialidadId) {
+          //   const especialidadIdNumber = Number(especialidadId); 
+          //   this.registrarMedicoEspecialidad(response.payload.id, especialidadIdNumber);
+          // }
+
+          this.dialogRef.close();
+
           if(!sessionStorage.getItem('datosUsuario')){
            console.log(sessionStorage.getItem('datosUsuario'))
             this.router.navigate(['/home-login']);
           }
-          this.dialogRef.close();
+          
           alert("Usuario registrado exitosamente.");
         } else {
           console.error('Error de registro', response.mensaje);
@@ -126,5 +150,40 @@ aceptar(): void {
 }
 
 
+
+  // Método para cargar especialidades desde el servicio
+  cargarEspecialidades() {
+    this.AutenticacionService.obtenerEspecialidades().subscribe(
+      (response) => {
+        console.log(response);
+        this.especialidades = response.payload; 
+      },
+      (error) => {
+        console.error('Error al cargar especialidades', error);
+      }
+    );
+  }
+
+
+
+  // NO FUNCIONA
+  // registrarMedicoEspecialidad(id_medico: number, id_especialidad: number) {
+  //   this.AutenticacionService.crearMedicoEspecialidad({ id_medico, id_especialidad })
+  //     .subscribe(response => {
+  //       console.log('Respuesta de registrarMedicoEspecialidad:', response); 
+  //       if (response.codigo === 200) {
+  //         console.log('Especialidad registrada exitosamente');
+  //       } else {
+  //         console.error('Error al registrar especialidad', response.mensaje);
+  //       }
+  //     }, error => {
+  //       console.error('Error en la petición', error);
+  //     });
+  // }
+  
 }
+
+
+
+
 
