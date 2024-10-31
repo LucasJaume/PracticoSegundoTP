@@ -66,6 +66,46 @@ export class AutenticacionService {
     return this.http.post(`${this.url}/api/crearMedicoEspecialidad`, data, { headers });
   }
 
+  crearAgenda(data: {hora_entrada: string; hora_salida: string; fecha: string; id_medico: number; id_especialidad: number}){
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.post(`${this.url}/api/crearAgenda`, data, { headers });
+
+  }
+
+  modificarAgenda(data: {hora_entrada: string; hora_salida: string; fecha: string; id_medico: number; id_especialidad: number}){
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.put(`${this.url}/api/modificarAgenda`, data, { headers });
+  }
+
+  obtenerAgenda(id_medico: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: ` ${token}`, 'Content-type': 'application/json' };
+    return this.http.get(`${this.url}/api/obtenerAgenda/${id_medico}`, { headers });
+  }
+
+  obtenerEspecialidadesPorMedico(id_medico: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json'
+    };
+    return this.http.get(`${this.url}/api/obtenerEspecialidadesMedico/${id_medico}`, {headers});
+  }
+
+  obtenerMedicoPorEspecialidad(idEspecialidad: number): Observable<any> {
+    return this.http.get(`${this.url}/api/obtenerMedicoPorEspecialidad/${idEspecialidad}`);
+  }
+
 
   
 

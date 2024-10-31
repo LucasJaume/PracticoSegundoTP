@@ -13,11 +13,14 @@
     <div *ngIf="selectedDate">
       <p>Horarios para el {{selectedDate | date: 'dd/MM/yyyy'}}</p>
       <p *ngIf="horarios[selectedDate]">
-        Entrada: {{horarios[selectedDate].entrada}} | Salida: {{horarios[selectedDate].salida}}
+        Entrada: |{{horarios[selectedDate].entrada}}| <br> 
+        Salida: |{{horarios[selectedDate].salida }}|
       </p>
       <p *ngIf="!horarios[selectedDate]">No hay horarios establecidos para este día.</p>
     </div>
   
+    
+
     <button mat-raised-button (click)="mostrarHorarios = !mostrarHorarios">Establecer nuevo horario</button>
   
     <div *ngIf="mostrarHorarios">
