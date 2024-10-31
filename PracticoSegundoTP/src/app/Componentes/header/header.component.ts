@@ -19,9 +19,9 @@ export class HeaderComponent {
     cargarDatosUsuario(): void {
       const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || 'null');
       if (datosUsuario) {
-        // Asumiendo que 'nombre' y 'apellido' están en 'datosUsuario'
+
         this.nombreUsuario = `${datosUsuario[0]?.nombre} ${datosUsuario[0]?.apellido}`;
-        this.tipoUsuario = datosUsuario[0]?.rol; // Asegúrate de que 'rol' es el nombre correcto
+        this.tipoUsuario = datosUsuario[0]?.rol; 
       }
     }
 
@@ -29,6 +29,7 @@ export class HeaderComponent {
     sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['/home-login']);
+    localStorage.removeItem('token');
   }
 
   volverAtras() : void{

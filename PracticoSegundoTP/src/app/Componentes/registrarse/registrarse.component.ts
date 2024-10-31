@@ -10,6 +10,8 @@ import { loadTranslations } from '@angular/localize';
   templateUrl: './registrarse.component.html',
   styleUrls: ['./registrarse.component.css']
 })
+
+
 export class RegistrarseComponent {
 
   userRole: string | null  = localStorage.getItem("rol");
@@ -27,6 +29,7 @@ export class RegistrarseComponent {
     'rol': ['', Validators.required],
     'especialidadId': ['']
  });
+
 
   ngOnInit(): void {
 
@@ -84,9 +87,17 @@ close(): void {
 }
 
 aceptar(): void {
+
+  
+
   console.log(this.form);
 
   const { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol, especialidadId  } = this.form.value;
+
+  if (rol === 'medico' && !especialidadId) {
+    alert("Por favor, selecciona una especialidad para el médico.");
+    return; // No continuar si no se seleccionó especialidad
+  }
 
   let body = { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol };
 
@@ -122,15 +133,24 @@ aceptar(): void {
       response => {
         if (response.codigo === 200) {
           console.log('Usuario registrado exitosamente', response);
-          localStorage.setItem('token', response.jwt);
-
-          // no funciona 
-          // if (rol === 'medico' && especialidadId) {
-          //   const especialidadIdNumber = Number(especialidadId); 
-          //   this.registrarMedicoEspecialidad(response.payload.id, especialidadIdNumber);
-          // }
+          console.log('Usuario registrado exitosamente', response.payload[0].id_usuario);
+          const nuevoMedicoId = response.payload[0].id_usuario;
 
           this.dialogRef.close();
+
+          const id_especialidad = especialidadId ? Number(especialidadId) : null; // Aquí conviertes a number
+
+          if (rol === 'medico' && id_especialidad) {
+            this.crearMedicoEspecialidad({ id_medico: nuevoMedicoId, id_especialidad }).subscribe(
+              res => {
+                console.log('Médico asociado a la especialidad exitosamente', res);
+              },
+              error => {
+                console.error('Error al asociar médico a especialidad', error);
+              }
+            );
+          }
+
 
           if(!sessionStorage.getItem('datosUsuario')){
            console.log(sessionStorage.getItem('datosUsuario'))
@@ -164,23 +184,12 @@ aceptar(): void {
     );
   }
 
+  // Añade este método dentro de tu clase RegistrarseComponent
+crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }) {
+  return this.AutenticacionService.crearMedicoEspecialidad(data);
+}
 
 
-  // NO FUNCIONA
-  // registrarMedicoEspecialidad(id_medico: number, id_especialidad: number) {
-  //   this.AutenticacionService.crearMedicoEspecialidad({ id_medico, id_especialidad })
-  //     .subscribe(response => {
-  //       console.log('Respuesta de registrarMedicoEspecialidad:', response); 
-  //       if (response.codigo === 200) {
-  //         console.log('Especialidad registrada exitosamente');
-  //       } else {
-  //         console.error('Error al registrar especialidad', response.mensaje);
-  //       }
-  //     }, error => {
-  //       console.error('Error en la petición', error);
-  //     });
-  // }
-  
 }
 
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,7 @@ export class AutenticacionService {
     return this.http.put(`${this.url}/api/actualizarUsuario/${id}`, usuarioData, { headers });
   }
 
+  // funciona cheto
   obtenerEspecialidades(): Observable<any>{
     const token = localStorage.getItem('token'); 
   
@@ -52,10 +54,13 @@ export class AutenticacionService {
     return this.http.get(`${this.url}/api/obtenerEspecialidades`, { headers });
   }
 
+
+  // no funciona 
   crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }): Observable<any> {
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
     const headers = {
-      'Authorization': `Bearer  ${token}`,
+      'Authorization': ` ${token}`,
       'Content-type': 'application/json' 
     };
     return this.http.post(`${this.url}/api/crearMedicoEspecialidad`, data, { headers });
