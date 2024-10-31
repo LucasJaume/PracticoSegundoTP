@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 })
 export class VistaOperadorComponent {
 
-  constructor(private router:Router){}
+  apellidoUsuario: string | null = null;
+
+
+  constructor(private router:Router){
+    const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || 'null');
+    if (datosUsuario) {
+      this.apellidoUsuario = `${datosUsuario[0]?.apellido} `;
+    }
+  }
 
   vistaCrearPaciente() : void{
     this.router.navigate(["/vistaCrearPaciente"])

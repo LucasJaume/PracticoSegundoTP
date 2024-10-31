@@ -8,14 +8,23 @@ import { Router } from '@angular/router';
 })
 export class VistaMedicoComponent {
   
-  constructor(private router:Router){}
+  apellidoUsuario: string | null = null;
+  
+  constructor(private router: Router) {
+    const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || 'null');
+    if (datosUsuario) {
+      this.apellidoUsuario = `${datosUsuario[0]?.apellido} `;
+    }
+    
 
-  turnosProgramados():void{
-    this.router.navigate(['/turnosProgramados'])
   }
 
-  gestionAgenda():void{
-    this.router.navigate(["/gestionAgendas"])
+  turnosProgramados(): void {
+    this.router.navigate(['/turnosProgramados']);
   }
 
+  gestionAgenda(): void {
+    this.router.navigate(['/gestionAgendas']);
+  }
 }
+
