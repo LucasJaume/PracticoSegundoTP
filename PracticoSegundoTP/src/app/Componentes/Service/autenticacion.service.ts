@@ -103,7 +103,32 @@ export class AutenticacionService {
   }
 
   obtenerMedicoPorEspecialidad(idEspecialidad: number): Observable<any> {
-    return this.http.get(`${this.url}/api/obtenerMedicoPorEspecialidad/${idEspecialidad}`);
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json'
+    };
+    return this.http.get(`${this.url}/api/obtenerMedicoPorEspecialidad/${idEspecialidad}`, {headers});
+  }
+
+  asignarTurnoPaciente(data: any){
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.post(`${this.url}/api/asignarTurnoPaciente`, data, { headers });
+  }
+
+  obtenerCoberturas(){
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.get(`${this.url}/api/obtenerCoberturas`, {headers});
   }
 
 

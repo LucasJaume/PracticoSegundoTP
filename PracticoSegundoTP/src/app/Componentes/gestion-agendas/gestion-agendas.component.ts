@@ -91,6 +91,9 @@ export class GestionAgendasComponent implements OnInit  {
   establecerHorario() {
     if (!this.selectedDate || !this.nuevoHorario.entrada || !this.nuevoHorario.salida) return;
 
+    console.log("Fecha seleccionada:", this.selectedDate);
+    console.log("Nuevo horario a establecer:", this.nuevoHorario);
+
       // Verifica si hay un conflicto con el nuevo horario
   if (this.hayConflicto(this.nuevoHorario)) {
     // Muestra un mensaje de error si hay un conflicto
@@ -130,18 +133,33 @@ hayConflicto(nuevoHorario: { entrada: string, salida: string }): boolean {
   const entradaNuevo = this.convertirAHoras(nuevoHorario.entrada);
   const salidaNuevo = this.convertirAHoras(nuevoHorario.salida);
 
+
+  console.log("Revisando conflictos para el horario:", nuevoHorario);
+  console.log("Horarios del día para la fecha seleccionada:", this.selectedDate, this.agenda);
+
+
   const horariosDelDia = this.agenda.filter(h => 
     new Date(h.fecha).toISOString().slice(0, 10) === this.selectedDate
   );
+
+  console.log("Horarios existentes en la fecha seleccionada:", horariosDelDia);
+
 
   // Verifica si hay algún horario que se superponga
   return horariosDelDia.some(h => {
     const entradaExistente = this.convertirAHoras(h.hora_entrada);
     const salidaExistente = this.convertirAHoras(h.hora_salida);
 
+    console.log("Condición de conflicto:", entradaNuevo < salidaExistente && salidaNuevo > entradaExistente);
+
+
     // Comprobación de superposición
     return (entradaNuevo < salidaExistente && salidaNuevo > entradaExistente);
   });
+
+
+
+  
 }
 
 // Función auxiliar para convertir la hora a un formato que se pueda comparar
