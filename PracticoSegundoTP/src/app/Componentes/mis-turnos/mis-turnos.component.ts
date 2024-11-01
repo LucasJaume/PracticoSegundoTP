@@ -1,28 +1,53 @@
-import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AutenticacionService } from '../Service/autenticacion.service';
+import { MatTableDataSource } from '@angular/material/table';
 
-export interface Turnos {
+
+export interface Turno {
   fecha: Date;
-  hora: String;
-  detalle: String;
+  hora: string;
+  detalle: string;
+  especialista: string; 
+  especialidad: string; 
 }
 
-const TURNOS: Turnos[] = [
-  {
-    fecha: new Date("2024-10-10"),
-    hora: "11:00",
-    detalle: "Menu"
-  }
-];
 
 @Component({
   selector: 'app-mis-turnos',
   templateUrl: './mis-turnos.component.html',
   styleUrls: ['./mis-turnos.component.css']
 })
-export class MisTurnosComponent {
+export class MisTurnosComponent implements OnInit {
   displayedColumns: string[] = ['fecha', 'hora', 'detalle'];
-  dataSource = TURNOS;
+  dataSource = new MatTableDataSource<Turno>(); 
+
+  constructor(private AutenticacionService: AutenticacionService) {}
+
+  ngOnInit() {
+    const idPaciente = 10; 
+    this.obtenerTurnosPaciente(idPaciente); 
+    
+  }
+
+  obtenerTurnosPaciente(id: number): void {
+    this.AutenticacionService.obtenerTurnosPaciente(id).subscribe(
+      (response) => {
+        if (response.codigo === 200) { 
+          response.payload.sort((a: { fecha: string | number | Date; }, b: { fecha: string | number | Date; }) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+          this.dataSource.data = response.payload; 
+          console.log('Turnos obtenidos:', response.payload); 
+        } else {
+          console.error('Error en la respuesta:', response.mensaje);
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los turnos:', error);
+      }
+    );
+  }
+  
+  
 }
+

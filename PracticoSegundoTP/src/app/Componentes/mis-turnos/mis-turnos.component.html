@@ -14,8 +14,8 @@
       <td mat-cell *matCellDef="let element">
         <button mat-button [matMenuTriggerFor]="menu">Mas Detalles</button>
         <mat-menu #menu="matMenu">
-          <p>LUCAS</p>
-          <p> KINE</p>
+          <p>{{element.nombre_medico}} {{element.apellido_medico}}</p>
+          <p> {{element.especialidad}}</p>
         </mat-menu>
       </td>
     </ng-container>

@@ -131,6 +131,27 @@ export class AutenticacionService {
     return this.http.get(`${this.url}/api/obtenerCoberturas`, {headers});
   }
 
+  obtenerTurnosPaciente(id: number): Observable<any>{
+    const token = localStorage.getItem('token');  
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.get(`${this.url}/api/obtenerTurnoPaciente/${id}`, {headers});
+  }
+
+  obtenerUsuario(id: number): Observable<any>{
+    const token = localStorage.getItem('token');  
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json' 
+    };
+    return this.http.get(`${this.url}/api/obtenerUsuario/${id}`, {headers});
+  }
+
+
+  
+
 
   
 

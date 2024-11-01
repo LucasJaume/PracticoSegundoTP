@@ -96,7 +96,7 @@ aceptar(): void {
 
   if (rol === 'medico' && !especialidadId) {
     alert("Por favor, selecciona una especialidad para el médico.");
-    return; // No continuar si no se seleccionó especialidad
+    return;
   }
 
   let body = { nombre, apellido, email, dni, telefono, fecha_nacimiento, password, rol };
@@ -126,7 +126,6 @@ aceptar(): void {
     );
   }
   else {
-    // Si no hay 'data', significa que está creando un nuevo usuario
     this.AutenticacionService.register(
       apellido, nombre, fecha_nacimiento, password, rol || 'paciente', email, telefono, dni
     ).subscribe(
