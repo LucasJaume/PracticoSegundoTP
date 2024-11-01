@@ -214,22 +214,21 @@ export class NuevoTurnoComponent implements OnInit {
           });
           
           if (agendaDelDia.length > 0) {
-            // Obtener todos los horarios de las agendas del día seleccionado
+            this.idAgenda = agendaDelDia[0].id;
+            console.log("ID de la agenda seleccionada:", this.idAgenda);
             const horasDisponibles: string[] = [];
             agendaDelDia.forEach((item: any) => {
-              const { hora_entrada, hora_salida } = item; // Obtener hora de entrada y salida
+              const { hora_entrada, hora_salida } = item; 
   
-              // Generar horas disponibles para cada agenda
               this.generarHorasDisponibles(hora_entrada, hora_salida, horasDisponibles);
             });
   
-            // Asignar las horas disponibles al formulario
             this.horasDisponibles = horasDisponibles;
-            this.form.get('hora')?.enable(); // Habilitar el campo de hora
+            this.form.get('hora')?.enable(); 
           } else {
             console.warn("No hay disponibilidad para el profesional en la fecha seleccionada.");
-            this.form.get('hora')?.disable(); // Deshabilitar el campo de hora
-            this.form.get('hora')?.setValue(null); // Limpiar el valor del campo de hora
+            this.form.get('hora')?.disable(); 
+            this.form.get('hora')?.setValue(null); 
           }
         },
         (error) => {
