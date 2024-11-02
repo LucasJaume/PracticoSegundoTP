@@ -4,7 +4,7 @@
   
     <mat-form-field>
       <mat-label>Selecciona una fecha</mat-label>
-      <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event.value)">
+      <input matInput [matDatepicker]="picker" (dateChange)="cambioFecha($event.value)">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

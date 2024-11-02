@@ -63,7 +63,7 @@ export class NuevoTurnoComponent implements OnInit {
     );
   }
 
-  onCoberturaChange() {
+  cambiarCobertuas() {
     if (this.form.get('cobertura')?.valid) {
       this.form.get('especialidad')?.enable();
       this.cargarEspecialidades();
@@ -83,7 +83,7 @@ export class NuevoTurnoComponent implements OnInit {
     );
   }
 
-  onEspecialidadChange() {
+  cambiarEspecialidad() {
     const idEspecialidad = Number(this.form.get('especialidad')?.value);
     if (idEspecialidad) {
       this.AutenticacionService.obtenerMedicoPorEspecialidad(idEspecialidad).subscribe(
@@ -107,7 +107,7 @@ export class NuevoTurnoComponent implements OnInit {
     }
   }
 
-  onProfesionalChange() {
+  cambiarProfesional() {
     const profesionalSeleccionadoValue = this.form.get('profesional')?.value;
     const profesionalSeleccionado = profesionalSeleccionadoValue ? parseInt(profesionalSeleccionadoValue, 10) : 0;
 
@@ -118,12 +118,12 @@ export class NuevoTurnoComponent implements OnInit {
           console.log("Agenda para el profesional:", agenda);
 
           if (agenda && agenda.length > 0) {
-            this.form.get('fecha')?.enable(); // Habilitar el campo de fecha
-            this.form.get('hora')?.disable(); // Asegurarse que el campo de hora esté deshabilitado
+            this.form.get('fecha')?.enable(); 
+            this.form.get('hora')?.disable(); 
           } else {
             console.warn("No hay disponibilidad para este profesional.");
-            this.form.get('fecha')?.disable(); // Deshabilitar si no hay agenda
-            this.form.get('hora')?.disable(); // Deshabilitar hora también
+            this.form.get('fecha')?.disable(); 
+            this.form.get('hora')?.disable(); 
           }
         },
         (error) => {
@@ -132,72 +132,15 @@ export class NuevoTurnoComponent implements OnInit {
       );
     } else {
       console.warn("Profesional no seleccionado.");
-      this.form.get('fecha')?.disable(); // Deshabilitar si no hay profesional seleccionado
-      this.form.get('hora')?.disable(); // Deshabilitar hora también
+      this.form.get('fecha')?.disable(); 
+      this.form.get('hora')?.disable(); 
     }
   }
   
   idAgenda: any;
 
-// onFechaChange() {
-//   const fechaSeleccionada = this.form.get('fecha')?.value;
-//   const profesionalSeleccionadoValue = this.form.get('profesional')?.value;
-//   const profesionalSeleccionado = profesionalSeleccionadoValue ? parseInt(profesionalSeleccionadoValue, 10) : 0;
 
-//   if (fechaSeleccionada && profesionalSeleccionado) {
-//     let fechaAgenda: any;
-//     this.AutenticacionService.obtenerAgenda(profesionalSeleccionado).subscribe(
-//       (data: any) => {
-//         const agenda = data.payload;
-
-//         // Filtrar la agenda por la fecha seleccionada
-//         const agendaDelDia = agenda.filter((item: any) => {
-//           fechaAgenda = new Date(item.fecha).toISOString().split('T')[0]; // Obtener solo la fecha sin hora
-//           return fechaAgenda === fechaSeleccionada;
-//         });
-        
-//         if (agendaDelDia.length > 0) {
-//           // Asignar el id de la primera agenda del día a idAgenda
-//           this.idAgenda = agendaDelDia[0].id; // Asegúrate de que el id se llame `id` o el nombre que uses en tu API
-//           console.log(this.idAgenda);
-          
-//           // Si hay agenda para la fecha seleccionada, generar horas disponibles
-//           const { hora_entrada, hora_salida } = agendaDelDia[0]; // Usar la primera agenda del día
-//           this.generarHorasDisponibles(hora_entrada, hora_salida);
-//           this.form.get('hora')?.enable(); // Habilitar el campo de hora
-//         } else {
-//           console.warn("No hay disponibilidad para el profesional en la fecha seleccionada.");
-//           this.form.get('hora')?.disable(); // Deshabilitar el campo de hora
-//           this.form.get('hora')?.setValue(null); // Limpiar el valor del campo de hora
-//         }
-//       },
-//       (error) => {
-//         console.error("Error al obtener la agenda del profesional:", error);
-//       }
-//     );
-//   } else {
-//     console.warn("Fecha o profesional no seleccionados.");
-//     this.form.get('hora')?.disable(); // Deshabilitar si no hay fecha o profesional seleccionado
-//     this.form.get('hora')?.setValue(null); // Limpiar el valor del campo de hora
-//   }
-// }
-
-
-  // generarHorasDisponibles(horaEntrada: string, horaSalida: string) {
-  //   const horasDisponibles = [];
-  //   const startHour = new Date(`1970-01-01T${horaEntrada}:00`);
-  //   const endHour = new Date(`1970-01-01T${horaSalida}:00`);
-
-  //   for (let hora = startHour; hora < endHour; hora.setHours(hora.getHours() + 1)) {
-  //     const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:00hs a ${(hora.getHours() + 1).toString().padStart(2, '0')}:00hs`;
-  //     horasDisponibles.push(horaFormato);
-  //   }
-
-  //   this.horasDisponibles = horasDisponibles;
-  //   console.log("Horas disponibles generadas:", this.horasDisponibles);
-  // }
-
-  onFechaChange() {
+  cambiarFechas() {
     const fechaSeleccionada = this.form.get('fecha')?.value;
     const profesionalSeleccionadoValue = this.form.get('profesional')?.value;
     const profesionalSeleccionado = profesionalSeleccionadoValue ? parseInt(profesionalSeleccionadoValue, 10) : 0;
@@ -207,9 +150,9 @@ export class NuevoTurnoComponent implements OnInit {
         (data: any) => {
           const agenda = data.payload;
   
-          // Filtrar la agenda por la fecha seleccionada
+    
           const agendaDelDia = agenda.filter((item: any) => {
-            const fechaAgenda = new Date(item.fecha).toISOString().split('T')[0]; // Obtener solo la fecha sin hora
+            const fechaAgenda = new Date(item.fecha).toISOString().split('T')[0]; 
             return fechaAgenda === fechaSeleccionada;
           });
           
@@ -237,8 +180,8 @@ export class NuevoTurnoComponent implements OnInit {
       );
     } else {
       console.warn("Fecha o profesional no seleccionados.");
-      this.form.get('hora')?.disable(); // Deshabilitar si no hay fecha o profesional seleccionado
-      this.form.get('hora')?.setValue(null); // Limpiar el valor del campo de hora
+      this.form.get('hora')?.disable(); 
+      this.form.get('hora')?.setValue(null); 
     }
   }
 
@@ -247,10 +190,10 @@ export class NuevoTurnoComponent implements OnInit {
     const startHour = new Date(`1970-01-01T${horaEntrada}:00`);
     const endHour = new Date(`1970-01-01T${horaSalida}:00`);
   
-    // Generar horas disponibles dentro del rango de horas
+
     for (let hora = startHour; hora < endHour; hora.setHours(hora.getHours() + 1)) {
       const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:00hs a ${(hora.getHours() + 1).toString().padStart(2, '0')}:00hs`;
-      // Asegúrate de que no se dupliquen las horas
+ 
       if (!horasDisponibles.includes(horaFormato)) {
         horasDisponibles.push(horaFormato);
       }
@@ -259,7 +202,7 @@ export class NuevoTurnoComponent implements OnInit {
     console.log("Horas disponibles generadas:", horasDisponibles);
   }
 
-  onSubmit() {
+  enviar() {
 
     let idUsuario;
     const datosUser = sessionStorage.getItem("datosUsuario");

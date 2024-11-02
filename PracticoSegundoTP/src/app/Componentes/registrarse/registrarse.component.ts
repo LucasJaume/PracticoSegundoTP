@@ -137,7 +137,7 @@ aceptar(): void {
 
           this.dialogRef.close();
 
-          const id_especialidad = especialidadId ? Number(especialidadId) : null; // Aquí conviertes a number
+          const id_especialidad = especialidadId ? Number(especialidadId) : null; 
 
           if (rol === 'medico' && id_especialidad) {
             this.crearMedicoEspecialidad({ id_medico: nuevoMedicoId, id_especialidad }).subscribe(
@@ -183,7 +183,7 @@ aceptar(): void {
     );
   }
 
-  // Añade este método dentro de tu clase RegistrarseComponent
+
 crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }) {
   return this.AutenticacionService.crearMedicoEspecialidad(data);
 }
