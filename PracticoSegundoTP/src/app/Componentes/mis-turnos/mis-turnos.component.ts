@@ -26,10 +26,25 @@ export class MisTurnosComponent implements OnInit {
   constructor(private AutenticacionService: AutenticacionService) {}
 
   ngOnInit() {
-    const idPaciente = 10; 
-    this.obtenerTurnosPaciente(idPaciente); 
-    
+    const datosUsuarioString = sessionStorage.getItem('datosUsuario');
+  
+    console.log('Contenido de datosUsuarioString:', datosUsuarioString);
+  
+    const datosUsuario = datosUsuarioString ? JSON.parse(datosUsuarioString) : null;
+  
+    console.log('Contenido de datosUsuario:', datosUsuario);
+  
+    const idPaciente = Array.isArray(datosUsuario) && datosUsuario[0]?.id ? datosUsuario[0].id : null;
+  
+    if (idPaciente) {
+      this.obtenerTurnosPaciente(idPaciente);
+      console.log('ID de paciente:', idPaciente);
+    } else {
+      console.error('ID de paciente no encontrado en datosUsuario');
+    }
   }
+  
+  
 
   obtenerTurnosPaciente(id: number): void {
     this.AutenticacionService.obtenerTurnosPaciente(id).subscribe(

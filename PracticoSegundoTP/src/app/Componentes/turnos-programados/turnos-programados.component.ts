@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AutenticacionService } from '../Service/autenticacion.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
+
+
 @Component({
   selector: 'app-turnos-programados',
   templateUrl: './turnos-programados.component.html',
@@ -15,30 +17,41 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
+
 export class TurnosProgramadosComponent implements OnInit {
+
+  userRole: string | null = '';
+
+
   dataSource = new MatTableDataSource<turnosMedicos>();
   columnsToDisplay = ['hora', 'nombre', 'edad'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'acciones'];
   expandedElement: turnosMedicos | null = null;
+  datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || '[]');
 
-  id_medico = 9; // Establecer el ID del médico aquí
-  fecha: string = ''; // Almacena la fecha seleccionada
+  id_medico = this.datosUsuario[0]?.id; 
+  fecha: string = ''; 
 
   constructor(private autenticacionService: AutenticacionService) { }
 
   ngOnInit() {
     this.obtenerTurnos();
+
+    const datosUsuario = JSON.parse(sessionStorage.getItem('datosUsuario') || '[]');
+    console.log(datosUsuario);
+    
+    this.userRole= datosUsuario[0]?.rol || '';
   }
 
   onDateChange(fecha: Date) {
-    this.fecha = fecha.toISOString().split('T')[0]; // Formatear la fecha a YYYY-MM-DD
+    this.fecha = fecha.toISOString().split('T')[0]; 
     this.obtenerTurnos();
   }
 
   obtenerTurnos() {
     this.autenticacionService.obtenerTurnosMedico(this.fecha, this.id_medico).subscribe(
       (response) => {
-        console.log('Respuesta de OBTENER TURNOS', response); // Log de respuesta
+        console.log('Respuesta de OBTENER TURNOS', response); 
         if (response && Array.isArray(response.payload)) {
           this.dataSource.data = response.payload.map((turno: any, index:number) => ({
             id_turno: index + 1,
@@ -59,7 +72,10 @@ export class TurnosProgramadosComponent implements OnInit {
   }
 
   cancelarTurno(turno: any): void {
-    const id = parseInt(turno) // Asegúrate de acceder a la propiedad correcta
+
+    const id = parseInt(turno) ;
+    console.log(turno);
+    
     console.log('Elemento recibidoOOOoo:', id);
     if (id === undefined) {
         console.error('ID del turno es undefined');
@@ -70,8 +86,8 @@ export class TurnosProgramadosComponent implements OnInit {
     this.autenticacionService.cancelarTurno(id).subscribe({
         next: () => {
             alert('Turno cancelado con éxito');
-            // Actualiza la tabla para reflejar los cambios
-            this.dataSource.data = this.dataSource.data.filter(t => t.id_turno !== id); // Filtra el turno cancelado
+       
+            this.dataSource.data = this.dataSource.data.filter(t => t.id_turno !== id); 
             console.log(this.dataSource.data);
         },
         error: (err) => {
@@ -95,7 +111,7 @@ export class TurnosProgramadosComponent implements OnInit {
 }
 
 export interface turnosMedicos {
-  id_turno: number; // Asegúrate de que este campo esté presente
+  id_turno: number; 
   hora: string;
   nombre: string;
   edad: number;

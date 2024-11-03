@@ -46,16 +46,12 @@ export class OperadorAsignarTurnosComponent implements OnInit {
 
   cargarCoberturas() {
     this.autenticacionService.obtenerCoberturas().subscribe(
-      (response) => {
-        console.log('respuesa cobertua',response);
-        if (response && Array.isArray(response)) {
-          this.coberturas = response;
-        } else {
-          console.error('La respuesta no contiene un array en payload');
-        }
+      (data: any) => {
+        this.coberturas = data.payload;
+        console.log("Coberturas cargadas:", this.coberturas);
       },
       (error) => {
-        console.error('Error al cargar coberturas', error);
+        console.error("Error al cargar coberturas:", error);
       }
     );
   }
@@ -166,7 +162,7 @@ obtenerIdAgenda(): number {
 
   if (!fechaSeleccionada || !horaSeleccionada) {
     console.error('Fecha o hora no seleccionada');
-    return 0; // Devolver 0 en lugar de una cadena vacía
+    return 0; 
   }
 
   const agendaItem = this.agenda.find(item => 
@@ -177,7 +173,7 @@ obtenerIdAgenda(): number {
 
   console.log('Agenda Item:', agendaItem);
 
-  return agendaItem ? agendaItem.id : 0; // Devolver el id de la agenda
+  return agendaItem ? agendaItem.id : 0; 
 }
 
 

@@ -12,12 +12,14 @@ export interface operadorGestionMedico {
   especialidad: string;
   horarioatencion: string;
 }
+const idsMedicos = [30, 37]; 
 
 @Component({
   selector: 'app-operador-gestion-medico',
   templateUrl: './operador-gestion-medico.component.html',
   styleUrls: ['./operador-gestion-medico.component.css']
 })
+
 export class OperadorGestionMedicoComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'especialidad', 'horarioatencion', 'acciones'];
   dataSource: operadorGestionMedico[] = [];
@@ -31,46 +33,73 @@ export class OperadorGestionMedicoComponent implements OnInit {
     this.fechaForm = this.fb.group({
       fecha: [new Date()]
     });
+    
   }
 
   ngOnInit(): void {
     this.cargarTurnos();
   }
 
+  // cargarTurnos(): void {
+  //   const fechaSeleccionada = this.fechaForm.get('fecha')?.value;
+  //   if (fechaSeleccionada) {
+  //     const fechaString = fechaSeleccionada.toISOString().split('T')[0]; 
+  //     // const id_medico = 30; 
+      
+
+      
+  //     this.autenticacionService.obtenerTurnosMedico(fechaString, id_medico).subscribe(
+  //       (response) => {
+  //         console.log('Respuesta de OBTENER TURNOS', response); 
+  
+  //         if (response && Array.isArray(response.payload)) {
+  //           this.dataSource = response.payload.map((turno: any) => {
+  //             console.log('datos del turno',turno); 
+  //             return {
+  //               nombre: turno.nombre_medico,
+  //               especialidad: turno.especialidad,
+  //               horarioatencion: turno.hora
+  //             };
+  //           });
+  //         } else {
+  //           console.warn('La respuesta no contiene un payload válido');
+  //           this.dataSource = [];
+  //         }
+  //       },
+  //       (error) => {
+  //         console.error('Error al cargar turnos', error);
+  //       }
+  //     );
+  //   }
+  // }
+
   cargarTurnos(): void {
+    this.dataSource = [];
     const fechaSeleccionada = this.fechaForm.get('fecha')?.value;
     if (fechaSeleccionada) {
-      const fechaString = fechaSeleccionada.toISOString().split('T')[0]; // Formato AAAA-MM-DD
-      const id_medico = 9; // Asegúrate de que este id sea un número
-      
-      this.autenticacionService.obtenerTurnosMedico(fechaString, id_medico).subscribe(
-        (response) => {
-          console.log('Respuesta de OBTENER TURNOS', response); // Log de respuesta
+      const fechaString = fechaSeleccionada.toISOString().split('T')[0];
   
-          if (response && Array.isArray(response.payload)) {
-            this.dataSource = response.payload.map((turno: any) => {
-              console.log('datos del turno',turno); // Log de cada turno
-              return {
+      idsMedicos.forEach((id_medico) => {
+        this.autenticacionService.obtenerTurnosMedico(fechaString, id_medico).subscribe(
+          (response) => {
+            if (response && Array.isArray(response.payload)) {
+              const turnosMedico = response.payload.map((turno: any) => ({
                 nombre: turno.nombre_medico,
                 especialidad: turno.especialidad,
-                horarioatencion: turno.hora
-              };
-            });
-          } else {
-            console.warn('La respuesta no contiene un payload válido');
-            this.dataSource = [];
-          }
-        },
-        (error) => {
-          console.error('Error al cargar turnos', error);
-        }
-      );
+                horarioatencion: turno.hora,
+              }));
+              this.dataSource = [...this.dataSource, ...turnosMedico];
+            }
+          },
+          (error) => console.error(`Error al cargar turnos del médico ${id_medico}`, error)
+        );
+      });
     }
   }
   
   
 
-  // Agregar un método para manejar el botón de carga de turnos
+ 
   onFechaChange(): void {
     this.cargarTurnos();
   }

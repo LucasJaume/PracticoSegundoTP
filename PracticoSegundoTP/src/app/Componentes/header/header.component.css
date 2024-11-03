@@ -1,4 +1,5 @@
-.header {
+
+ .header {
     display: flex;
     align-items: center;
     height: 100px;
@@ -26,7 +27,9 @@ h1 {
 
 .nombreUsuario {
     margin-right: 15px;
-    font-size: 16px;
+    font-size: 18px; 
+    font-weight: 600;
+    position: relative; 
 }
 
 .icono {
@@ -34,6 +37,7 @@ h1 {
     font-size: 18px;
     cursor: pointer;
     color: #fff;
+    position: relative; 
 }
 
 .cerrar {
@@ -74,9 +78,6 @@ h1 {
 }
 
 .btn-volver mat-icon {
-
     font-size: 20px; 
     color: #000;
 }
-
-

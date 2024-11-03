@@ -42,7 +42,7 @@ export class AutenticacionService {
     return this.http.put(`${this.url}/api/actualizarUsuario/${id}`, usuarioData, { headers });
   }
 
-  //funciona cheto
+
   obtenerEspecialidades(): Observable<any>{
     const token = localStorage.getItem('token'); 
   
@@ -81,7 +81,7 @@ export class AutenticacionService {
     const token = localStorage.getItem('token');  
     console.log('Token utilizado:', token);
     const headers = {
-      'Authorization': `Bearer ${token}`, // Asegúrate de usar "Bearer" si es necesario
+      'Authorization': `Bearer ${token}`, 
       'Content-type': 'application/json' 
     };
     return this.http.put(`${this.url}/api/modificarAgenda/${id_agenda}`, data, { headers });
@@ -122,17 +122,25 @@ export class AutenticacionService {
     return this.http.post(`${this.url}/api/asignarTurnoPaciente`, data, { headers });
   }
 
-  obtenerCoberturas(): Observable<any[]> {
-    const token = localStorage.getItem('token');
+  // obtenerCoberturas(): Observable<any[]> {
+  //   const token = localStorage.getItem('token');
+  //   const headers = {
+  //     'Authorization': ` ${token}`,
+  //     'Content-type': 'application/json'
+  //   };
+  //   return this.http.get<any>(`${this.url}/api/obtenerCoberturas`, { headers }).pipe(
+  //     map(response => response.payload) 
+  //   );
+  // }
+  obtenerCoberturas(){
+    const token = localStorage.getItem('token');  
+    console.log('Token utilizado:', token);
     const headers = {
       'Authorization': ` ${token}`,
-      'Content-type': 'application/json'
+      'Content-type': 'application/json' 
     };
-    return this.http.get<any>(`${this.url}/api/obtenerCoberturas`, { headers }).pipe(
-      map(response => response.payload) // Accede al array dentro del objeto de respuesta
-    );
+    return this.http.get(`${this.url}/api/obtenerCoberturas`, {headers});
   }
-  
   
 
   obtenerTurnosPaciente(id: number): Observable<any>{
@@ -165,7 +173,7 @@ obtenerTurnosMedico(fecha: string, id_medico: number): Observable<any> {
   }
 
   cancelarTurno(id: number): Observable<any> {
-    const token = localStorage.getItem('token'); // Asumiendo que necesitas un token para autenticar
+    const token = localStorage.getItem('token'); 
     const headers = {
       'Authorization': ` ${token}`,
       'Content-type': 'application/json'
