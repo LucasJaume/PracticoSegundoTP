@@ -16,8 +16,8 @@ interface Horario {
 export class GestionAgendasComponent implements OnInit {
   selectedDate: string | null = null;
   mostrarHorarios: boolean = false;
-  // horarios: { [date: string]: Horario } = {};
-  horarios: any = {}; // Este objeto contendrá los horarios por fecha
+  // horarios: { [date: string]: Horario } = {}; 
+  horarios: any = {}; 
 
   nuevoHorario: Horario = { entrada: '', salida: '' };
   idMedico: number = 0;
@@ -67,6 +67,7 @@ export class GestionAgendasComponent implements OnInit {
 
   // Maneja el cambio de fecha
   onDateChange(selectedDate: Date) {
+
     this.selectedDate = this.formatDate(selectedDate); // Función para formatear la fecha
 
     // Filtrar la agenda para obtener los horarios de la fecha seleccionada
@@ -82,32 +83,30 @@ export class GestionAgendasComponent implements OnInit {
         salida: horariosDelDia.map((h) => h.hora_salida).join(', '),
       };
     } else {
-      this.horarios[fechaSeleccionada] = null; // No hay horarios para esta fecha
+        this.horarios[fechaSeleccionada] = null; // No hay horarios para esta fecha
     }
   }
 
   formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes 0-11
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`; // Retorna formato 'YYYY-MM-DD'
-  }
+}
 
   establecerHorario() {
     if (!this.selectedDate || !this.nuevoHorario.entrada || !this.nuevoHorario.salida) return;
   
     console.log("Fecha seleccionada:", this.selectedDate);
     console.log("Nuevo horario a establecer:", this.nuevoHorario);
-  
-    // Verifica si hay un conflicto con el nuevo horario
-    if (this.hayConflicto(this.nuevoHorario)) {
-      alert('Error: El horario que intentas establecer ya está ocupado.');
-      return; // Detiene la ejecución si hay un conflicto
-    }
-  
-    // Aquí definimos el id_agenda que deseas modificar
-    const id_agenda = 5; // Modifica este valor según sea necesario
-  
+
+      // Verifica si hay un conflicto con el nuevo horario
+  if (this.hayConflicto(this.nuevoHorario)) {
+    // Muestra un mensaje de error si hay un conflicto
+    alert('Error: El horario que intentas establecer ya está ocupado.');
+    return; // Detiene la ejecución si hay un conflicto
+  }
+
     const horarioData = {
       id_agenda: id_agenda, // Agrega el ID de la agenda
       hora_entrada: this.nuevoHorario.entrada,
@@ -174,14 +173,18 @@ export class GestionAgendasComponent implements OnInit {
         entradaNuevo < salidaExistente && salidaNuevo > entradaExistente
       );
 
-      // Comprobación de superposición
-      return entradaNuevo < salidaExistente && salidaNuevo > entradaExistente;
-    });
-  }
+    // Comprobación de superposición
+    return (entradaNuevo < salidaExistente && salidaNuevo > entradaExistente);
+  });
 
-  // Función auxiliar para convertir la hora a un formato que se pueda comparar
-  private convertirAHoras(hora: string): number {
-    const [horas, minutos] = hora.split(':').map(Number);
-    return horas * 60 + minutos; // Convierte a minutos
-  }
+
+
+  
+}
+
+// Función auxiliar para convertir la hora a un formato que se pueda comparar
+private convertirAHoras(hora: string): number {
+  const [horas, minutos] = hora.split(':').map(Number);
+  return horas * 60 + minutos; // Convierte a minutos
+}
 }

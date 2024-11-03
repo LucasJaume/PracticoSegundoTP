@@ -3,7 +3,7 @@
       <div class="cobertura">
         <mat-form-field>
           <mat-label>Cobertura</mat-label>
-          <mat-select formControlName="cobertura" (selectionChange)="onCoberturaChange()">
+          <mat-select formControlName="cobertura" (selectionChange)="cambiarCobertuas()">
             <mat-option *ngFor="let cobertura of cobertura" [value]="cobertura.id">
               {{ cobertura.nombre }}
             </mat-option>
@@ -14,7 +14,7 @@
       <div class="especialidad">
         <mat-form-field>
           <mat-label>Especialidad</mat-label>
-          <mat-select formControlName="especialidad" (selectionChange)="onEspecialidadChange()">
+          <mat-select formControlName="especialidad" (selectionChange)="cambiarEspecialidad()">
             <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
               {{ especialidad.descripcion }}
             </mat-option>
@@ -25,7 +25,7 @@
       <div class="profesional">
         <mat-form-field>
           <mat-label>Profesional</mat-label>
-          <mat-select formControlName="profesional" (selectionChange)="onProfesionalChange()">
+          <mat-select formControlName="profesional" (selectionChange)="cambiarProfesional()">
             <mat-option *ngFor="let profesional of profesionales" [value]="profesional.id_medico">
               {{ profesional.nombre}}
               {{ profesional.apellido}}
@@ -37,7 +37,7 @@
       <div class="fecha">
         <mat-form-field>
           <mat-label>Fecha</mat-label>
-          <input matInput type="date" formControlName="fecha" (change)="onFechaChange()">
+          <input matInput type="date" formControlName="fecha" (change)="cambiarFechas()">
         </mat-form-field>
       </div>
 
@@ -61,7 +61,7 @@
       </div>
   
       <div class="botones">
-        <button type="submit" (click)="onSubmit()">Aceptar</button>
+        <button type="submit" (click)="enviar()">Aceptar</button>
         <button type="button" (click)="botonCancelar()">Cancelar</button>
       </div>
     </form>
