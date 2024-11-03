@@ -111,6 +111,6 @@ export class DatosPersonalesComponent implements OnInit {
   }
 
   // formatFecha(fecha: string): string {
-  //    const [year, month, day] = fecha.split('-'); return `${day}-${month}-${year}`; // Ajusta el formato según sea necesario }  
+  //    const [year, month, day] = fecha.split('-'); return `${day}-${month}-${year}`;  
   // }
 }

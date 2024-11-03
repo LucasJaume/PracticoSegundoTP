@@ -22,32 +22,48 @@ constructor(
   private router:Router
 ){}
 
-aceptar(): void {
-  const nombre = this.form.get('nombre')?.value;
-  const Contrasena = this.form.get('Contrasena')?.value;
+  aceptar(): void {
+    const nombre = this.form.get('nombre')?.value;
+    const Contrasena = this.form.get('Contrasena')?.value;
 
-  if (nombre && Contrasena) {
-    this.AutenticacionService.login(nombre, Contrasena).subscribe(
-      response => {
-        if (response.codigo === 200) {
-          console.log('Login exitoso', response);
-          localStorage.setItem('token', response.jwt);
-          sessionStorage.setItem('datosUsuario', JSON.stringify(response.payload));
-          localStorage.setItem('rol', response.payload[0].rol);
-          this.router.navigate(['/home']);
-          this.dialogRef.close();
-        } else {
-          console.error('Error de login', response.mensaje);
+    if (nombre && Contrasena) {
+      this.AutenticacionService.login(nombre, Contrasena).subscribe(
+        response => {
+          if (response.codigo === 200) {
+            console.log('Login exitoso', response);
+            localStorage.setItem('token', response.jwt);
+            sessionStorage.setItem('datosUsuario', JSON.stringify(response.payload));
+            localStorage.setItem('rol', response.payload[0].rol); 
+
+     
+            const rol = response.payload[0].rol; 
+            switch (rol) {
+              case 'medico':
+                this.router.navigate(['/vistaMedico']);
+                break;
+              case 'administrador':
+                this.router.navigate(['/vistaAdministrador']);
+                break;
+              case 'operador':
+                this.router.navigate(['/vistaOperador']);
+                break;
+              default:
+                this.router.navigate(['/home']); 
+            }
+            this.dialogRef.close();
+          } else {
+            console.error('Error de login', response.mensaje);
+          }
+        },
+        error => {
+          console.error('Error en la petición', error);
         }
-      },
-      error => {
-        console.error('Error en la petición', error);
-      }
-    );
-  } else {
-    console.error('Nombre o contraseña no pueden estar vacíos');
+      );
+    } else {
+      console.error('Nombre o contraseña no pueden estar vacíos');
+    }
   }
-}
+
 
 close(): void {
   this.dialogRef.close();

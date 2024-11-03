@@ -1,98 +1,87 @@
-
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #e9ecef; /* Color de fondo suave */
-    margin: 0;
-    font-family: 'Arial', sans-serif; /* Cambia la fuente por defecto */
-  }
-  
-  /* Estilo del encabezado */
-  h1 {
-    text-align: center;
-    font-size: 32px; /* Tamaño de fuente más grande */
-    margin-bottom: 15px;
-    color: #4a4a4a;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra para el texto */
-  }
-  
-  /* Estilo del párrafo */
-  p {
-    text-align: center;
-    font-size: 18px;
-    color: #6c757d;
-    margin-bottom: 20px;
-    line-height: 1.5; /* Aumento del espacio entre líneas */
-  }
-  
-  /* Contenedor principal */
-  .container {
-    margin: auto;
-    width: 33%; /* Un tercio del ancho de la pantalla */
-    padding: 30px; /* Espaciado interno más amplio */
-    background-color: #ffffff; /* Color de fondo blanco */
-    border-radius: 15px; /* Bordes más redondeados */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más profunda */
-    height: auto; /* Permitir que el alto se ajuste al contenido */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  /* Mat-form-field styling */
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  /* Botones estilizados */
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #6200ee;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
-  }
-  
-  button:hover {
-    background-color: #3700b3;
-    transform: translateY(-2px); /* Ligera elevación al pasar el ratón */
-  }
-  
-  /* Inputs de horario */
-  input[type="time"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  /* Etiquetas de formulario */
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: #4a4a4a;
-  }
-  
-  /* Mensaje de horario */
-  p.ng-star-inserted {
-    text-align: center;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  br {
-    margin-bottom: 10px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e9ecef; 
+  margin: 0;
+  font-family: 'Arial', sans-serif; 
+}
 
-  
+h1 {
+  text-align: center;
+  font-size: 32px; 
+  margin-bottom: 15px;
+  color: #4a4a4a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.container {
+  margin: auto;
+  width: 33%;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #3700b3;
+  transform: translateY(-2px);
+}
+
+input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+p.ng-star-inserted {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+br {
+  margin-bottom: 10px;
+}

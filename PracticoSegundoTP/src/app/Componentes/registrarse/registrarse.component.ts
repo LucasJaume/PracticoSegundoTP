@@ -170,7 +170,6 @@ aceptar(): void {
 
 
 
-  // Método para cargar especialidades desde el servicio
   cargarEspecialidades() {
     this.AutenticacionService.obtenerEspecialidades().subscribe(
       (response) => {
@@ -182,7 +181,6 @@ aceptar(): void {
       }
     );
   }
-
 
 crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }) {
   return this.AutenticacionService.crearMedicoEspecialidad(data);
