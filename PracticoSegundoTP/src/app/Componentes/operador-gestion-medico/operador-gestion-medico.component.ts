@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
-import { GestionAgendasComponent } from '../gestion-agendas/gestion-agendas.component';
+import { Component, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AutenticacionService } from '../Service/autenticacion.service';
 import { OperadorAsignarTurnosComponent } from '../operador-asignar-turnos/operador-asignar-turnos.component';
+import { GestionAgendasComponent } from '../gestion-agendas/gestion-agendas.component';
 import { TurnosProgramadosComponent } from '../turnos-programados/turnos-programados.component';
-
 
 export interface operadorGestionMedico {
   nombre: string;
@@ -12,22 +13,67 @@ export interface operadorGestionMedico {
   horarioatencion: string;
 }
 
-const tablaOperador: operadorGestionMedico[] = [
-  {nombre: "medico1", especialidad: 'kinesio', horarioatencion: "15:00hs a 20:00hs"},
-  {nombre: "medico2", especialidad: 'otorrino', horarioatencion: "15:00hs a 20:00hs"},
-
-];
-
 @Component({
   selector: 'app-operador-gestion-medico',
   templateUrl: './operador-gestion-medico.component.html',
   styleUrls: ['./operador-gestion-medico.component.css']
 })
-export class OperadorGestionMedicoComponent {
+export class OperadorGestionMedicoComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'especialidad', 'horarioatencion', 'acciones'];
-  dataSource = tablaOperador;
+  dataSource: operadorGestionMedico[] = [];
+  fechaForm: FormGroup;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private autenticacionService: AutenticacionService
+  ) {
+    this.fechaForm = this.fb.group({
+      fecha: [new Date()]
+    });
+  }
+
+  ngOnInit(): void {
+    this.cargarTurnos();
+  }
+
+  cargarTurnos(): void {
+    const fechaSeleccionada = this.fechaForm.get('fecha')?.value;
+    if (fechaSeleccionada) {
+      const fechaString = fechaSeleccionada.toISOString().split('T')[0]; // Formato AAAA-MM-DD
+      const id_medico = 9; // Asegúrate de que este id sea un número
+      
+      this.autenticacionService.obtenerTurnosMedico(fechaString, id_medico).subscribe(
+        (response) => {
+          console.log('Respuesta de OBTENER TURNOS', response); // Log de respuesta
+  
+          if (response && Array.isArray(response.payload)) {
+            this.dataSource = response.payload.map((turno: any) => {
+              console.log('datos del turno',turno); // Log de cada turno
+              return {
+                nombre: turno.nombre_medico,
+                especialidad: turno.especialidad,
+                horarioatencion: turno.hora
+              };
+            });
+          } else {
+            console.warn('La respuesta no contiene un payload válido');
+            this.dataSource = [];
+          }
+        },
+        (error) => {
+          console.error('Error al cargar turnos', error);
+        }
+      );
+    }
+  }
+  
+  
+
+  // Agregar un método para manejar el botón de carga de turnos
+  onFechaChange(): void {
+    this.cargarTurnos();
+  }
 
   modificarHorarios(doctor: any) {
     const dialogRef = this.dialog.open(GestionAgendasComponent, {
@@ -68,5 +114,3 @@ export class OperadorGestionMedicoComponent {
     const dialogRef = this.dialog.open(TurnosProgramadosComponent);
   }
 }
-
-

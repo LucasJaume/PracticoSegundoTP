@@ -35,7 +35,6 @@ import { VistaOperadorComponent } from './Componentes/vista-operador/vista-opera
 import { OperadorCrearPacienteComponent } from './Componentes/operador-crear-paciente/operador-crear-paciente.component';
 import { OperadorAsignarTurnosComponent } from './Componentes/operador-asignar-turnos/operador-asignar-turnos.component';
 import { OperadorGestionMedicoComponent } from './Componentes/operador-gestion-medico/operador-gestion-medico.component';
-
 registerLocaleData(localeES);
 import { HttpClientModule } from '@angular/common/http';
 
@@ -75,9 +74,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule, 
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
-    ,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

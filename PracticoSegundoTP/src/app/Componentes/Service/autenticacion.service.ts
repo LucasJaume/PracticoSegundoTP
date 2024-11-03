@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators'; 
+import { map, tap } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,7 @@ export class AutenticacionService {
     return this.http.put(`${this.url}/api/actualizarUsuario/${id}`, usuarioData, { headers });
   }
 
-  // funciona cheto
+  //funciona cheto
   obtenerEspecialidades(): Observable<any>{
     const token = localStorage.getItem('token'); 
   
@@ -53,9 +53,9 @@ export class AutenticacionService {
   
     return this.http.get(`${this.url}/api/obtenerEspecialidades`, { headers });
   }
+ 
 
 
-  // no funciona 
   crearMedicoEspecialidad(data: { id_medico: number; id_especialidad: number }): Observable<any> {
     const token = localStorage.getItem('token');  
     console.log('Token utilizado:', token);
@@ -77,15 +77,16 @@ export class AutenticacionService {
 
   }
 
-  modificarAgenda(data: {hora_entrada: string; hora_salida: string; fecha: string; id_medico: number; id_especialidad: number}){
+  modificarAgenda(id_agenda: number, data: {hora_entrada: string; hora_salida: string; fecha: string; id_medico: number; id_especialidad: number}) {
     const token = localStorage.getItem('token');  
     console.log('Token utilizado:', token);
     const headers = {
-      'Authorization': ` ${token}`,
+      'Authorization': `Bearer ${token}`, // Asegúrate de usar "Bearer" si es necesario
       'Content-type': 'application/json' 
     };
-    return this.http.put(`${this.url}/api/modificarAgenda`, data, { headers });
-  }
+    return this.http.put(`${this.url}/api/modificarAgenda/${id_agenda}`, data, { headers });
+}
+
 
   obtenerAgenda(id_medico: number): Observable<any> {
     const token = localStorage.getItem('token');
@@ -121,15 +122,18 @@ export class AutenticacionService {
     return this.http.post(`${this.url}/api/asignarTurnoPaciente`, data, { headers });
   }
 
-  obtenerCoberturas(){
-    const token = localStorage.getItem('token');  
-    console.log('Token utilizado:', token);
+  obtenerCoberturas(): Observable<any[]> {
+    const token = localStorage.getItem('token');
     const headers = {
       'Authorization': ` ${token}`,
-      'Content-type': 'application/json' 
+      'Content-type': 'application/json'
     };
-    return this.http.get(`${this.url}/api/obtenerCoberturas`, {headers});
+    return this.http.get<any>(`${this.url}/api/obtenerCoberturas`, { headers }).pipe(
+      map(response => response.payload) // Accede al array dentro del objeto de respuesta
+    );
   }
+  
+  
 
   obtenerTurnosPaciente(id: number): Observable<any>{
     const token = localStorage.getItem('token');  
@@ -139,6 +143,17 @@ export class AutenticacionService {
     };
     return this.http.get(`${this.url}/api/obtenerTurnoPaciente/${id}`, {headers});
   }
+  
+obtenerTurnosMedico(fecha: string, id_medico: number): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = {
+    'Authorization': ` ${token}`,
+    'Content-type': 'application/json'
+  };
+  return this.http.post<any>(`${this.url}/api/obtenerTurnosMedico`, { id_medico, fecha }, { headers });
+}
+  
+  
 
   obtenerUsuario(id: number): Observable<any>{
     const token = localStorage.getItem('token');  
@@ -149,11 +164,14 @@ export class AutenticacionService {
     return this.http.get(`${this.url}/api/obtenerUsuario/${id}`, {headers});
   }
 
+  cancelarTurno(id: number): Observable<any> {
+    const token = localStorage.getItem('token'); // Asumiendo que necesitas un token para autenticar
+    const headers = {
+      'Authorization': ` ${token}`,
+      'Content-type': 'application/json'
+    };
 
-  
-
-
-  
-
+    return this.http.delete(`${this.url}/eliminarTurnoPaciente/${id}`, { headers });
+  }
 
 }
